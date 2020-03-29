@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+<body>
+<ul id="List">
+    <li>List item 1</li>
+    <li>List item 2</li>
+    <li>List item 3</li><li>List item 4</li><li>List item 5</li>
+</ul>
+<div>
+    <button onclick="isFirstElement()">Выбрать первый элемент</button>
+</div>
+<script>
+    function isFirstElement() {
+        let temp = document.getElementById("List").firstElementChild;
+        temp.style.color = 'red';
+    }
+</script>
+<div>
+    <button onclick="isLastElement()">Выбрать последний элемент</button>
+</div>
+<script>
+    function isLastElement() {
+        let temp = document.getElementById("List").lastElementChild;
+        temp.style.color = 'red';
+    }
+</script>
+<div>
+    <button onclick="isNextItem()">Выбрать следующий элемент</button>
+</div>
+<script>
+    let i = 0;
+    function isNextItem() {
+        let amount = document.getElementById('List').getElementsByTagName('li').length;
+        if (i < amount) {
+            let temp = document.getElementById('List').firstElementChild;
+            temp.style.color = 'black';
+            let g = 0;
+            while (i !== g) {
+                temp = temp.nextSibling;
+                if (temp.nodeType !== 3) {
+                    g++;
+                    temp.style.color = 'black';
+                }
+            }
+            temp.style.color = 'green';
+            i++;
+        } else {
+            i = 0;
+            let last = document.getElementById('List').lastElementChild;
+            last.style.color = 'black';
+            let temp = document.getElementById('List').firstElementChild;
+            temp.style.color = 'black';
+            let g = 0;
+            while (i !== g) {
+                temp = temp.nextSibling;
+                if (temp.nodeType !== 3) {
+                    g++;
+                    temp.style.color = 'black';
+                }
+            }
+            temp.style.color = 'green';
+            i++;
+        }
+    }
+</script>
+<div>
+    <button onclick="isPrevItem()">Выбрать предыдущий элемент</button>
+</div>
+<script>
+    let b = document.getElementById('List').getElementsByTagName('li').length;
+    function isPrevItem() {
+        if (b > 0) {
+            let g = document.getElementById('List').getElementsByTagName('li').length;
+            let temp = document.getElementById('List').lastElementChild;
+            temp.style.color = 'black';
+            while (b !== g) {
+                temp = temp.previousSibling;
+                if (temp.nodeType !== 3) {
+                    g--;
+                    temp.style.color = 'black';
+                }
+            }
+            temp.style.color = 'green';
+            b--;
+        } else {
+            b = document.getElementById('List').getElementsByTagName('li').length;
+            let g = document.getElementById('List').getElementsByTagName('li').length;
+            let first = document.getElementById('List').firstElementChild;
+            first.style.color = 'black';
+            let temp = document.getElementById('List').lastElementChild;
+            temp.style.color = 'black';
+            while (b !== g) {
+                temp = temp.previousSibling;
+                if (temp.nodeType !== 3) {
+                    g--;
+                    temp.style.color = 'black';
+                }
+            }
+            temp.style.color = 'green';
+            b--;
+        }
+    }
+</script>
+<div>
+    <button onclick="append()">Добавить элемент</button>
+</div>
+<script>
+    function append() {
+        let newItem = document.createElement('li');
+        newItem.innerHTML = 'New Item';
+        document.getElementById('List').appendChild(newItem);
+    }
+</script>
+<div>
+    <button onclick="removeElement()">Удалить элемент</button>
+</div>
+<script>
+    function removeElement() {
+        let mainObj = document.getElementById('List');
+        let oneChild = mainObj.lastChild;
+        mainObj.removeChild(oneChild);
+    }
+</script>
+<div>
+    <button onclick="insertBeforeFirst()">Добавить в начало</button>
+</div>
+<script>
+    function insertBeforeFirst() {
+        let newItem = document.createElement('li');
+        newItem.innerHTML = 'New Item';
+        document.getElementById('List').prepend(newItem);
+    }
+</script>
+</body>
+</html>
