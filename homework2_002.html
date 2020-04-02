@@ -37,13 +37,25 @@
 <a href="#">Link</a>
 <script>
     var elems = document.getElementsByTagName('*');
-    //elems.style.cssText = 'color:red;text-decoration: none;'; - не работает!
-    var paragraph = document.getElementsByTagName("p")[0];
-    paragraph.style.cssText = 'color:brown;text-transform:uppercase;';
-    var paragraphClass = document.querySelector(".class");
-    paragraphClass.style.color = 'green';
-    var link = document.getElementsByTagName("a")[0];
-    link.style.cssText = 'font-weight: bold;font-style:italic;text-decoration:underline;text-transform:uppercase;';
+    for (var i=0; i<elems.length; i++) {
+        elems[i].style.cssText = 'color:red;text-decoration:none;';
+    }
+    var paragraph = document.querySelectorAll('p');
+    for (var p=0; p<paragraph.length; p++) {
+        paragraph[p].style.color = 'black';
+    }
+    var paragraphClass = document.querySelectorAll('.class');
+    for (var c=0; c<paragraphClass.length; c++) {
+        paragraphClass[c].style.color = 'green';
+    }
+    var link = document.querySelectorAll('a');
+    for (var a=0; a<link.length; a++) {
+        link[a].style.cssText = 'font-weight:bold;font-style:italic;text-decoration:underline;';
+    }
+    var textTransform = document.querySelectorAll('p,a');
+    for (var y=0; y<textTransform.length; y++) {
+        textTransform[y].style.textTransform = 'uppercase';
+    }
 </script>
 </body>
 </html>
