@@ -59,12 +59,19 @@
     <li>Молоко</li>
 </ul>
 <script>
-    var paragraphBackgroundColor = document.getElementsByTagName("p")[1];
-    paragraphBackgroundColor.style.backgroundColor = 'yellow';
-    var ulBackgroundColor = document.getElementsByTagName("ul");
-    for (var i=0; i<ulBackgroundColor.length; i++) {
-        ulBackgroundColor[i].style.backgroundColor = "#ff0000";
-    };
+    var div = document.body.childNodes;
+    for (var x=0; x<div.length; x++) {
+        if (div[x].nodeName === 'DIV') {
+           if (div[x].nextElementSibling.nodeName === 'P') {
+             var yellow = div[x].nextElementSibling;
+             yellow.style.backgroundColor = 'yellow';
+           }
+        }
+    }
+            var ulBackgroundColor = document.getElementsByTagName("ul");
+            for (var i=0; i<ulBackgroundColor.length; i++) {
+                ulBackgroundColor[i].style.backgroundColor = "#ff0000";
+            }
 </script>
 </body>
 </html>
