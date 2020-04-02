@@ -29,37 +29,22 @@
         </span>
     <p>Lorem <span>ipsum</span> dolor sit amet, consectetur adipisicing elit. Quam fugiat voluptatem in, impedit,
         provident illum commodi blanditiis! Molestiae dicta, exercitationem repellat illo ratione laboriosam libero
-        voluptatem, necessitatibus blanditiis unde vel!</p>
+        voluptatem, necessitatibus blanditiis unde vel!<a href="#">Link<span>SPAN CORRECT</span></a></p>
     </div>
     <a href="#">Link</a>
 <script>
-    var paragraph = document.getElementsByTagName("p");
+    var paragraph = document.getElementsByTagName('p');
     for (var i=0; i<paragraph.length; i++) {
         paragraph[i].style.color = "brown";
     }
-    var div = document.body.childNodes[3];
-    var span = div.childNodes;
-    for (var x=0; x<span.length; x++) {
-      if (span[x].nodeName === 'SPAN') {
-          span[x].style.color = 'green';
-      }
+    var span = document.querySelectorAll('div > span');
+    for (var i=0; i<span.length; i++) {
+        span[i].style.color = 'green';
     }
-    var link = document.getElementsByTagName('a');
+    var link = document.querySelectorAll('div p a span');
     for (var a=0; a<link.length; a++) {
-        if (link[a].hasChildNodes('span')) {
-            var par = document.getElementsByTagName('p');
-            for (var p = 0; p < par.length; p++) {
-                if (par[p].hasChildNodes('a')) {
-                    var divNew = document.getElementsByTagName('div');
-                    for (var d = 0; d < divNew.length; d++) {
-                        if (divNew[d].hasChildNodes('p')) {
-                            link[a].style.color = 'red';
-                        }
-                    }
-                }
-            }
+        link[a].style.color = 'red';
         }
-    }
 </script>
 </body>
 </html>
