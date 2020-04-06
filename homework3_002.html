@@ -14,7 +14,7 @@
 <p>
 <p><h3>Введите любую фразу:</h3></p>
 <input type="text" size="75" placeholder="Например: Побыстрее бы закончился карантин" autofocus>
-<input type="button" value="Разбить на слова" onclick="splitWords()">
+<input type="button" value="Тестировать" onclick="splitWords()">
 <p class="output"></p>
 <script>
 
@@ -37,6 +37,15 @@
         preLastWord = preLastWord.innerHTML.toLowerCase();
         var preLastElement = document.querySelector('.output').lastChild.previousSibling;
         preLastElement.innerHTML = preLastWord;
+
+        var str = document.querySelector('.output').innerText;
+        var letter = /а/gi;
+        var resultAll;
+        var x = 0;
+        while ((resultAll = letter.exec(str)) != null) {
+            x++;
+        }
+        alert('Всего регистронезависимых букв "a" найдено: ' + x);
     }
 </script>
 </body>
