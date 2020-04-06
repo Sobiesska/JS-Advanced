@@ -23,6 +23,7 @@
         var subPhrase = phraseValue.split(" ");
         var output = document.querySelector(".output");
         output.innerHTML = "<li>"+ subPhrase.join("<li>") + "</li>";
+        
         var firstWord = output.firstChild;
         firstWord = firstWord.innerHTML.toUpperCase();
         var firstElement = document.querySelector('.output').firstChild;
