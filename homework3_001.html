@@ -1,0 +1,53 @@
+<!-- Создайте счетчик секунд, который начинает отчет с 0 и заканчивается на 30, также добавьте кнопки которые
+останавливают отчет, и запускают его заново и добавьте кнопку обнуляющую отcчет. Также попробуйте изменить код так
+чтобы отчет начинался с 30 и заканчивался на 0. -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>setInterval</title>
+</head>
+<body>
+<p id="demo">Запустите счетчик</p>
+<button onclick="myResetFunction()">Обнулить</button>
+<button onclick="myStartFunction()">Старт</button>
+<button onclick="myStopFunction()">Остановить</button>
+<button id="reverse" onclick="myReverseFunction()">Обратный отсчет</button>
+<script>
+   var counter = 0;
+   var myReverse;
+   var myVar;
+   function myStartFunction() {
+       clearInterval(myReverse);
+       counter++;
+       myVar = setTimeout("myStartFunction()", 1000);
+       document.getElementById("demo").innerHTML = counter + " second(s)";
+       if (counter >= 5) {
+           clearTimeout(myVar);
+       };
+       document.getElementById("reverse").disabled = false;
+   }
+   function myStopFunction() {
+       clearInterval(myVar);
+       clearInterval(myReverse);
+   }
+   function myResetFunction() {
+       clearTimeout(myVar);
+       clearTimeout(myReverse);
+       counter = 0;
+       document.getElementById("demo").innerHTML = counter + " second(s)";
+       document.getElementById("reverse").disabled = true;
+   }
+   function myReverseFunction() {
+       clearInterval(myVar);
+       counter--;
+       myReverse = setTimeout("myReverseFunction()", 1000);
+       document.getElementById("demo").innerHTML = counter + " second(s)";
+       if (counter < 1) {
+           clearInterval(myReverse);
+           document.getElementById("reverse").disabled = true;
+       }
+   }
+</script>
+</body>
+</html>
