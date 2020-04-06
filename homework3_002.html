@@ -1,0 +1,43 @@
+<!--
+    Запросите у пользователя ввести какую-то фразу.
+    Отобразите каждое отдельное слово в виде списка ul li.
+    Также отобразите первое слово UPPERCASE, а последние 2 с маленькой.
+    Найдите все буквы "а" их количество в модальное окно.
+ -->
+
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<p>
+<p><h3>Введите любую фразу:</h3></p>
+<input type="text" size="75" placeholder="Например: Побыстрее бы закончился карантин" autofocus>
+<input type="button" value="Разбить на слова" onclick="splitWords()">
+<p class="output"></p>
+<script>
+
+    function splitWords() {
+        var phraseValue = document.querySelector('[type="text"]').value;
+        var subPhrase = phraseValue.split(" ");
+        var output = document.querySelector(".output");
+        output.innerHTML = "<li>"+ subPhrase.join("<li>") + "</li>";
+        var firstWord = output.firstChild;
+        firstWord = firstWord.innerHTML.toUpperCase();
+        var firstElement = document.querySelector('.output').firstChild;
+        firstElement.innerHTML = firstWord;
+
+        var lastWord = output.lastChild;
+        lastWord = lastWord.innerHTML.toLowerCase();
+        var lastElement = document.querySelector('.output').lastChild;
+        lastElement.innerHTML = lastWord;
+
+        var preLastWord = output.lastChild.previousSibling;
+        preLastWord = preLastWord.innerHTML.toLowerCase();
+        var preLastElement = document.querySelector('.output').lastChild.previousSibling;
+        preLastElement.innerHTML = preLastWord;
+    }
+</script>
+</body>
+</html>
