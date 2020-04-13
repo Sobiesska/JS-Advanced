@@ -1,0 +1,37 @@
+<!--
+Создайте ссылку и див с текстом внутри, который изначально при загрузке страницы будет скрыт.
+При клике на ссылку див появляется, если повторно нажать ссылку див и текст должны пропасть.
+Также создайте кнопку, которая будет отменять выполнение обработчика клика по ссылке.
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Скрытый див</title>
+<script type="text/javascript">
+    window.onload = function () {
+        var message = document.getElementById("message");
+        var showMessage = document.getElementById("show-message");
+        var removeClick = document.getElementById("remove-click");
+
+        showMessage.addEventListener("click", clickHandler);
+        function clickHandler() {
+            if (message.style.display === "none") {
+                message.style.display = "block";
+            } else message.style.display = "none";
+        }
+
+        removeClick.addEventListener("click", removeHandler);
+        function removeHandler() {
+            showMessage.removeEventListener("click", clickHandler);
+        }
+    };
+</script>
+</head>
+<body>
+<a href="#" id="show-message"> Нажмите на ссылку
+    <div style="display:none;" id="message">Ура! Вы нашли скрытое сообщение:)</div>
+</a><br>
+<button id="remove-click">Отменить клик</button>
+</body>
+</html>
