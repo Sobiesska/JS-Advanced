@@ -1,0 +1,65 @@
+<!--Создайте 5 блоков с текстом. Добавьте в каждый из блоков кнопку для его удаления.
+Используйте только один обработчик. -->
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+        div {
+            outline: 1px solid red;
+            margin: 10px 0 10px 0;
+            padding: 10px;
+        }
+        button {
+            background: -webkit-gradient(linear, 0 0, 0 100%, from(#e8ebf1), to(rgba(191, 191, 191, 0.35)));
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var container = document.getElementById('container');
+            var removeClick = document.getElementById("remove-click");
+            if (container) {
+                container.addEventListener("click", clickHandler);
+                function clickHandler(e) {
+                    var target = e.target;
+                    var div = target.closest('DIV');
+                    if (target.tagName !== 'BUTTON') {
+                        return;
+                    }
+                    div.remove();
+                }
+            }
+            removeClick.addEventListener("click", removeHandler);
+            function removeHandler() {
+                container.removeEventListener("click", clickHandler);
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="container">
+    <div>1.Lorem ipsum dolor sit amet, est no liber tation iriure, no eam tamquam philosophia, eligendi salutandi
+        ullamcorper est ad. At dicta qualisque argumentum nec, eu duo summo scaevola.<br>
+        <button>Hide</button>
+    </div>
+    <div>2.Lorem ipsum dolor sit amet, est no liber tation iriure, no eam tamquam philosophia, eligendi salutandi
+        ullamcorper est ad. At dicta qualisque argumentum nec, eu duo summo scaevola.<br>
+        <button>Hide</button>
+    </div>
+    <div>3.Lorem ipsum dolor sit amet, est no liber tation iriure, no eam tamquam philosophia, eligendi salutandi
+        ullamcorper est ad. At dicta qualisque argumentum nec, eu duo summo scaevola.<br>
+        <button>Hide</button>
+    </div>
+    <div>4.Lorem ipsum dolor sit amet, est no liber tation iriure, no eam tamquam philosophia, eligendi salutandi
+        ullamcorper est ad. At dicta qualisque argumentum nec, eu duo summo scaevola.<br>
+        <button>Hide</button>
+    </div>
+    <div>5.Lorem ipsum dolor sit amet, est no liber tation iriure, no eam tamquam philosophia, eligendi salutandi
+        ullamcorper est ad. At dicta qualisque argumentum nec, eu duo summo scaevola.<br>
+        <button>Hide</button>
+    </div>
+</div>
+<button id="remove-click">RemoveEventListener</button>
+</body>
+</html>
