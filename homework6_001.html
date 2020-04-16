@@ -1,0 +1,59 @@
+<!-- 1. back to top button; drag;-->
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork</title>
+    <style>
+        #square {
+            height: 50px;
+            width: 50px;
+            background-color: cadetblue;
+            position: absolute;
+            font-size: 16px;
+            color: white;
+        }
+        button {
+            width: 200px;
+            height: 50px;
+            border-radius: 50px;
+            font-size: 16px;
+            margin-top: 300px;
+            background-color: antiquewhite;
+            color: dimgrey;
+        }
+    </style>
+</head>
+<body>
+<div id='square'></div>
+<button>Back to Top</button>
+<script>
+    window.addEventListener('load', dragAndDrop);
+    function dragAndDrop() {
+        var square = document.getElementById('square');
+        var button = square.nextElementSibling;
+        square.addEventListener("mousedown", moveElement);
+        function moveElement(e) {
+            function grabSquare(e) {
+                square.style.left = e.pageX + 'px';
+                square.style.top = e.pageY + 'px';
+            } grabSquare(e);
+
+            document.onmousemove = function (e) {
+                grabSquare(e);
+            };
+
+            square.onmouseup = function () {
+                square.onmouseup = null;
+                document.onmousemove = null;
+            };
+        }
+        button.addEventListener("click", backToTop);
+        function backToTop() {
+            square.style.left = 8 + "px";
+            square.style.top = 8 + "px";
+        }
+    }
+</script>
+</body>
+</html>
