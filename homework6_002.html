@@ -1,0 +1,69 @@
+<!--
+2. создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - останавливается,
+при попадании div к краю окна, он переходит к началу окна-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork</title>
+    <style>
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: cadetblue;
+            position: relative;
+            font-size: 16px;
+            color: white;
+
+
+        }
+        button {
+            width: 200px;
+            height: 50px;
+            border-radius: 50px;
+            font-size: 16px;
+            margin-top: 50px;
+            background-color: antiquewhite;
+            color: dimgrey;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<button>Stop</button>
+<script>
+    window.addEventListener('load', doStuff);
+    function doStuff() {
+        var body = document.querySelector('body');
+        body.addEventListener("click", moveElem);
+
+        function moveElem(event) {
+            var targetElement = event.target;
+            if (targetElement.tagName === 'DIV') {
+                var div = targetElement;
+                var divLeftCoord = div.getBoundingClientRect().left;
+                var clientScreen = document.documentElement.clientWidth;
+                var divWidth = div.getBoundingClientRect().right - divLeftCoord;
+                var button = div.nextElementSibling;
+                var handle;
+
+                function setCoord() {
+                    divLeftCoord = divLeftCoord + 1;
+                    div.style.left = divLeftCoord + "px";
+                    if ((divLeftCoord + divWidth) <= clientScreen) {
+                        handle = setTimeout(setCoord, 1);
+                    } else {
+                        div.style.left = 0 + "px";
+                    }
+                }
+                setCoord();
+                button.addEventListener("click", removeHandler);
+                function removeHandler() {
+                    clearTimeout(handle);
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
