@@ -1,0 +1,75 @@
+<!-- Переделайте примерм 013 через работу атрибутов.
+ Попробуйте варианты с рефакторингом -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Пример проверки достоверности ввода</title>
+    <style type="text/css">
+        input.invalid {
+            background-color: Pink;
+        }
+
+        input.valid {
+            background-color: LightGreen;
+        }
+    </style>
+</head>
+<body>
+<form name="form1">
+    Name:
+    <input onchange="validateName()" type="text" name="user-name" /><br />
+    email:
+    <input onchange="validateEmail()" type="text" name="email" /><br />
+    zipcode:
+    <input onchange="validateZip()" type="text" name="zip" /><br />
+    <input onclick="submitForm()" type="submit" />
+</form>
+<script>
+    var userName = document.forms["form1"]["user-name"];
+    var email = document.forms["form1"]["email"];
+    var zip = document.forms["form1"]["zip"];
+    var pattern;
+    var res;
+    function validateName() {
+        pattern = /\S/;
+        res = pattern.test(userName.value);
+        if (res === false) {
+            userName.className = "invalid";
+        }
+        else {
+            userName.className = "valid";
+        }
+    }
+    function validateEmail() {
+        pattern = /\b[a-z0-9._]+@[a-z0-9.-]+\.[a-z]{2,4}\b/i;
+        res = pattern.test(email.value);
+        if (res === false) {
+            email.className = "invalid";
+        }
+        else {
+            email.className = "valid";
+        }
+    }
+    function validateZip() {
+        pattern = /\d{5}/;
+        res = pattern.test(zip.value);
+        if (res === false) {
+            zip.className = "invalid";
+        }
+        else {
+            zip.className = "valid";
+        }
+    }
+    function submitForm() {
+        if (userName.className === "valid" && email.className === "valid" && zip.className === "valid") {
+            return true;
+        } else {
+            alert("Допущены ошибки при заполнении формы");
+            event.preventDefault();
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
