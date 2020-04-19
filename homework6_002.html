@@ -32,33 +32,27 @@
 <script>
     window.addEventListener('load', doStuff);
     function doStuff() {
-        var body = document.querySelector('body');
-        body.addEventListener("click", moveElem);
+        var div = document.querySelector('div');
+        var button = document.querySelector('button');
+        var divLeftCoord = div.getBoundingClientRect().left;
+        var clientScreen = document.documentElement.clientWidth;
+        var divWidth = div.getBoundingClientRect().width;
+        var handle;
+        div.addEventListener("click", moveElem);
 
-        function moveElem(event) {
-            var targetElement = event.target;
-            if (targetElement.tagName === 'DIV') {
-                var div = targetElement;
-                var divLeftCoord = div.getBoundingClientRect().left;
-                var clientScreen = document.documentElement.clientWidth;
-                var divWidth = div.getBoundingClientRect().right - divLeftCoord;
-                var button = div.nextElementSibling;
-                var handle;
-
-                function setCoord() {
+        function moveElem() {
+            handle = setInterval(function () {
+                var divRightCoord = divLeftCoord + divWidth;
+                if (divRightCoord <= clientScreen) {
                     divLeftCoord = divLeftCoord + 1;
                     div.style.left = divLeftCoord + "px";
-                    if ((divLeftCoord + divWidth) <= clientScreen) {
-                        handle = setTimeout(setCoord, 1);
-                    } else {
-                        div.style.left = 0 + "px";
-                    }
+                } else {
+                    divLeftCoord = 0;
                 }
-                setCoord();
-                button.addEventListener("click", removeHandler);
-                function removeHandler() {
-                    clearTimeout(handle);
-                }
+            }, 1);
+            button.addEventListener("click", removeHandler);
+            function removeHandler() {
+                clearInterval(handle);
             }
         }
     }
