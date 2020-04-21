@@ -1,0 +1,41 @@
+<!-- Реализуйте последний 2 слайда в презентации с помощью пройденого на уроке материала -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <script>
+        class Man {
+            constructor(name) {
+                this.name = name;
+            }
+            walk () {
+                return `${this.name} likes to walk among trees`
+            }
+            drink () {
+                return `${this.name} likes to drink fresh water`
+            }
+            eat () {
+                return `${this.name} likes to eat meat`
+            }
+
+        }
+        class Soldier extends Man {
+            shoot () {
+                return `${this.name} don't like but has to shoot`
+            }
+        }
+        class Doctor extends Man {
+            cure () {
+                return `${this.name} cures very well`
+            }
+        }
+        let soldier = new Soldier('Oleg');
+        console.log((soldier.shoot()));
+        let doctor = new Doctor('Stepan');
+        console.log((doctor.cure()));
+    </script>
+</head>
+<body>
+</body>
+</html>
