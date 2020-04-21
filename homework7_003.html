@@ -1,0 +1,47 @@
+<!-- Реализуйте последний 2 слайда в презентации с помощью пройденого на уроке материала -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <script>
+        function Doctor(walk, eat, drink) {
+            this.walk = walk;
+            this.eat = eat;
+            this.drink = drink;
+            this.cure = function () {
+                document.write("Doctor walks " + this.walk + ", eat" + this.eat + ", drinks" + this.drink
+                    + " and cures" + this.cure() + "<br />");
+            };
+        };
+        function Dentist(walk, eat, drink) {
+            this.walk = walk;
+            this.eat = eat;
+            this.drink = drink;
+            this.cure = function () {
+                document.write("Dentist treats teeth" + "<br />");
+            };
+        };
+        function Surgeon(walk, eat, drink) {
+            this.walk = walk;
+            this.eat = eat;
+            this.drink = drink;
+            this.cure = function () {
+                document.write("Surgeon performs operations" + "<br />");
+            };
+        };
+        Dentist.prototype = new Doctor();
+        Surgeon.prototype = new Doctor();
+
+        var dentist = new Dentist("5m/sec", "vegetables", "fresh water", "treats teeth");
+        var surgeon = new Surgeon("7m/sec", "meat", "coffee", "performs operations");
+
+        dentist.cure();
+        surgeon.cure();
+        console.log(dentist);
+        console.log(surgeon);
+    </script>
+</head>
+<body>
+</body>
+</html>
